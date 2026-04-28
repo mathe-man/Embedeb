@@ -1,1 +1,7 @@
-<Solution />
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="../../../../../../Documents/Code/Embedeb/Header/Header.vcxproj" Id="4710cb7e-2ac6-4a78-a8c6-62554b6e3380" />
+</Solution>

@@ -1,0 +1,20 @@
+# User-specific files
+*.suo
+
+# Visual Studio
+.vs/
+
+# Visual Studio Code
+.vscode/
+
+# Platform IO (VS Code extension)
+.pio/
+
+# Compile output
+**/obj/
+**/bin/
+
+
+# Ignore any folder with the name ending with "-ignore" at any level in the directory structure.
+# Allowing anybody to create ignored folders
+**/*-ignore/

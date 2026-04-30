@@ -7,7 +7,7 @@ public class Message
     public readonly string Content;
     public Message(string sender, string content)
     {
-        Sender = sender;
+        Sender = sender;   
         Content = content;
     }
     public Message(string source)

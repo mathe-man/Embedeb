@@ -35,19 +35,19 @@ typedef uint16_t UnsignedInt; // This type can be changed depending of the needs
 class Event;
 
 struct EmbedDebMessage {
-    const char* sender;
+    const char* type;
     const char* content;
 
-    EmbedDebMessage(const char* sender, const char* content) : sender(sender), content(content) {}
+    EmbedDebMessage(const char* type, const char* content) : type(type), content(content) {}
 
     UnsignedInt inline Length() const {
-        return strlen(sender) + strlen(content) + strlen(MessageSeparator) + 1; // +1 for the "=" separator
+        return strlen(type) + strlen(content) + strlen(MessageSeparator) + 1; // +1 for the "=" separator
     }
     const char* Build() const {
-        char* message = new char[strlen(sender) + strlen(content) + 2]; // +2 for "=" separator and null terminator
+        char* message = new char[strlen(type) + strlen(content) + 2]; // +2 for ":" separator and null terminator
 
-        strcpy(message, sender);
-        strcat(message, "=");
+        strcpy(message, type);
+        strcat(message, ":");
         strcat(message, content);
         strcat(message, MessageSeparator);
 
@@ -162,7 +162,7 @@ public:
 
     virtual const void flag() = 0;
 
-    const char* getName() const {
+    const char* getType() const {
         return eventName;
     }
 
@@ -170,7 +170,7 @@ public:
 protected:
 
     bool inline Log(const char* content) {
-        EmbedDebMessage message(getName(), content);
+        EmbedDebMessage message(getType(), content);
         return EmbedDeb::LogMessage(message);
     }
 

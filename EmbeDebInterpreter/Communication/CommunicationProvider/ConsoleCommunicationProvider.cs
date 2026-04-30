@@ -1,6 +1,4 @@
-﻿
-
-namespace EmbeDebInterpreter.CommunicationProvider;
+﻿namespace EmbeDebInterpreter.Communication.CommunicationProvider;
 
 public class ConsoleCommunicationProvider : ICommunicationProvider
 {

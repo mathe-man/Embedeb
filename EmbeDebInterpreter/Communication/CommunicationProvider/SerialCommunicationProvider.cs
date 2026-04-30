@@ -1,6 +1,6 @@
 ﻿using System.IO.Ports;
 
-namespace EmbeDebInterpreter.CommunicationProvider;
+namespace EmbeDebInterpreter.Communication.CommunicationProvider;
 
 public class SerialCommunicationProvider : ICommunicationProvider
 {

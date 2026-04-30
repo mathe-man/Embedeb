@@ -1,4 +1,4 @@
-﻿namespace EmbeDebInterpreter.CommunicationProvider;
+﻿namespace EmbeDebInterpreter.Communication.CommunicationProvider;
 
 public interface ICommunicationProvider
 {

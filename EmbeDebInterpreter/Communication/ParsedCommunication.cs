@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace EmbeDebInterpreter.ParsedCommunication;
+namespace EmbeDebInterpreter.Communication;
 
 public class ParsedCommunication
 {
@@ -16,7 +16,7 @@ public class ParsedCommunication
 
     public string defaultMessageSeparator = "|";
 
-    public ParsedCommunication(string source, string? messageSeparator)
+    public ParsedCommunication(string source, string? messageSeparator = null)
     {
         if (source == null) throw new ArgumentNullException("source");
         if (string.IsNullOrEmpty(messageSeparator)) messageSeparator = defaultMessageSeparator;
@@ -57,7 +57,7 @@ public class ParsedCommunication
         Array.Copy(splitedSource, 2, Messages, 0, Messages.Length); // Copy the messages from the splited source to the Messages array
     }
 
-    public string Build(string? messageSeparator)
+    public string Build(string? messageSeparator = null)
     {
         if (string.IsNullOrEmpty(messageSeparator)) messageSeparator = defaultMessageSeparator;
 

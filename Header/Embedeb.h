@@ -194,9 +194,12 @@ private:
 
 class TickEvent : public Event {
 public:
-    TickEvent() : Event("TickEvent") {}
+    TickEvent(const char* name) : Event("TickEvent"), name(name) {}
 
     const void flag() override {
-        Log("Tick");
+        Log(name);
     }
+
+protected:
+	const char* name = "Tick";
 };

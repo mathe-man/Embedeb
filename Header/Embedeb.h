@@ -174,19 +174,22 @@ public:
     virtual const void flag() = 0;
 
     const char* getType() const {
-        return eventName;
+        return eventType;
     }
 
 
 protected:
-
     bool inline Log(const char* content) {
         EmbedDebMessage message(getType(), content);
         return EmbedDeb::LogMessage(message);
     }
 
+	void inline SetType(const char* type) {
+        eventType = type;
+    }
+
 private:
-    const char* eventName;
+    const char* eventType;
 };
 
 class TickEvent : public Event {

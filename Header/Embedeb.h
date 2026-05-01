@@ -55,13 +55,23 @@ struct EmbedDebMessage {
     }
 };
 
-typedef void (*WriteFunction)(const char*);
+using WriteFunction = void(*)(const char*);
+using TimeFunction = int(*)();
 
 class EmbedDeb {
 public:
 
+    static void Init(WriteFunction writeFunc, TimeFunction timeFunc) {
+        setWriteFunction(writeFunc);
+        setTimeFunction(timeFunc);
+	}
+
     static void setWriteFunction(WriteFunction func) {
         writeFunction = func;
+    }
+    
+    static void setTimeFunction(TimeFunction func) {
+        timeFunction = func;
     }
 
     static inline bool Flush() {
@@ -96,6 +106,7 @@ private:
 
     // Function pointer for writing messages, use Serial.print by default
     static inline WriteFunction writeFunction;
+	static inline TimeFunction timeFunction;
 
     static inline char eventsMessagesBuffer[MessagesBufferSize] = ""; // Buffer to hold the messages before flushing
 

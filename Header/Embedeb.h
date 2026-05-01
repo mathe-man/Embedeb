@@ -31,6 +31,7 @@
 
 
 typedef uint16_t UnsignedInt; // This type can be changed depending of the needs
+typedef uint32_t TimeType; // This type can be changed depending of the needs
 
 class Event;
 
@@ -101,6 +102,13 @@ public:
 		return true;
     }
 
+    static inline TimeType GetTime() {
+		if (!timeFunction)
+            return 0; // No time function set, cannot get time
+        
+		return timeFunction();
+    }
+
 
 private:
 
@@ -169,7 +177,7 @@ private:
 
 class Event {
 public:
-    Event(const char* name) : eventName(name) {}
+    Event(const char* type) : eventType(type) {}
 
     virtual const void flag() = 0;
 

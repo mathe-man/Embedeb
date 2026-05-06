@@ -1,16 +1,20 @@
 ﻿
 namespace EmbeDebInterpreter.Message;
 
-public class Message
+public abstract class Message
+{ }
+
+
+public class RawMessage
 {
     public readonly string Sender;
     public readonly string Content;
-    public Message(string sender, string content)
+    public RawMessage(string sender, string content)
     {
         Sender = sender;   
         Content = content;
     }
-    public Message(string source)
+    public RawMessage(string source)
     {
         if (string.IsNullOrEmpty(source)) throw new ArgumentNullException("source");
         

@@ -12,7 +12,7 @@ public class ParsedCommunication
 
     public readonly string[] Messages;
 
-    public string defaultMessageSeparator = "|";
+    public static string defaultMessageSeparator = "|";
 
     public ParsedCommunication(string source, string? messageSeparator = null)
     {

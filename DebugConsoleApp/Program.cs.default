@@ -2,6 +2,8 @@
 
 class Program
 {
+    // TODO: Add a readme to explain the purpose of this project and how to use it (Rename it)
+
     static string WelcomeMessage = 
         "This is console project u can use and modify as you wish." +
         "You can test features you added here !" +

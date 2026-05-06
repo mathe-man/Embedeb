@@ -1,0 +1,5 @@
+# Don't track the whole folder
+*
+# Keep this gitignore and the gitkeep file to keep the empty folder
+!.gitignore
+!.gitkeep

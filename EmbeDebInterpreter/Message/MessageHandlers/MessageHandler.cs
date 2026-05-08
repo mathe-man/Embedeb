@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EmbeDebInterpreter.Message;
+namespace EmbeDebInterpreter.Message.MessageHandlers;
 
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
 public class MessageHandler : Attribute

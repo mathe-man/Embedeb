@@ -7,11 +7,11 @@ public abstract class Message
 
 public class RawMessage
 {
-    public readonly string Sender;
+    public readonly string Type;
     public readonly string Content;
-    public RawMessage(string sender, string content)
+    public RawMessage(string type, string content)
     {
-        Sender = sender;   
+        Type = type;   
         Content = content;
     }
     public RawMessage(string source)
@@ -20,7 +20,7 @@ public class RawMessage
         
         var splitedSource = source.Split('=');
 
-        Sender = splitedSource[0];
+        Type = splitedSource[0];
         Content = splitedSource[1];
     }
 }

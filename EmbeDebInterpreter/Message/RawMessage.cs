@@ -17,6 +17,13 @@ public class RawMessage
     public RawMessage(string source)
     {
         if (string.IsNullOrEmpty(source)) throw new ArgumentNullException("source");
+
+        if (!source.Contains('='))
+        {
+            Type = source;
+            Content = string.Empty;
+            return;
+        }
         
         var splitedSource = source.Split('=');
 

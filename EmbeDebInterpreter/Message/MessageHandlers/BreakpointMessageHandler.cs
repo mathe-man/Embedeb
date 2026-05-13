@@ -8,8 +8,8 @@ public class BreakPointMessage : Message
         => ReceivedTime = receivedTime;
 }
 
-[MessageHandler("BKPoint")]
 public class BreakpointMessageHandler {
+    [MessageHandler("BKPoint")]
     public static Message Handle(string content)
     {
         // You can add a breakpoint here for debugging purposes

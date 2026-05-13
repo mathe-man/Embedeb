@@ -17,17 +17,25 @@ public class MessageDispatcher
     }
     public void RegisterHandlers(Assembly assembly)
     {
-        var handlerTypes = assembly.GetTypes().Where(t => t.GetCustomAttributes(typeof(MessageHandler), true).Length > 0);
-        foreach (var handlerType in handlerTypes)
-        {
-            var handlerAttributes = handlerType.GetCustomAttributes(typeof(MessageHandler), true) as MessageHandler[];
-            foreach (var handlerAttribute in handlerAttributes)
-            {
-                var methodInfo = handlerType.GetMethod("Handle", BindingFlags.Public | BindingFlags.Static);
-                if (methodInfo == null) throw new Exception($"The handler {handlerType.FullName} does not have a public static Handle method.");
-                _handlers[handlerAttribute.MessageId] = methodInfo;
-            }
-        }
+        var assemblyHandlers = assembly.GetTypes()
+            .SelectMany(t => t.GetMethods(BindingFlags.Public | BindingFlags.Static))
+            .Select(m => new {
+                Method = m,
+                Attr = m.GetCustomAttribute<MessageHandler>()
+            })
+            .Where(x => x.Attr != null)
+            .ToDictionary(
+                x => x.Attr.MessageId, // Key: ID defined in the attribute
+                x => x.Method          // Value: the method to call
+            );
+
+
+        _handlers = _handlers.Concat(assemblyHandlers)
+            .GroupBy(d => d.Key)
+            .ToDictionary(
+                g => g.Key,
+                g => g.Last().Value // In case of duplicates, take the last one found
+            );
     }
 
     public Message? Dispatch(RawMessage rawMessage)

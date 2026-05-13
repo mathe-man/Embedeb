@@ -8,8 +8,9 @@ public class TimeMessage : Message
         => Time = time;
 }
 
-[MessageHandler("TIME")]
 public class BasicTimeMessageHandler {
+
+    [MessageHandler("TIME")]
     public static Message Handle(string content)
     {
         var time = int.Parse(content);

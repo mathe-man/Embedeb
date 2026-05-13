@@ -3,11 +3,8 @@
 public class ConsoleCommunicationProvider : ICommunicationProvider
 {
     public event EventHandler<string>? OnCommunicationReceived;
-    public ConsoleCommunicationProvider()
-    {
-        Task.Run(() => ListenToConsoleInput());
-    }
-    private void ListenToConsoleInput()
+    
+    public void ListenToConsoleInput()
     {
         while (true)
         {

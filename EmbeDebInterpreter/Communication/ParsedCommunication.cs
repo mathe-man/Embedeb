@@ -20,7 +20,7 @@ public class ParsedCommunication
         if (string.IsNullOrEmpty(messageSeparator)) messageSeparator = defaultMessageSeparator;
 
         // Split the source by the message separator, the first part will be the magic number, the second part will be the board name and the rest will be the messages
-        var splitedSource = source.Split(messageSeparator);
+        var splitedSource = source.Split(messageSeparator, StringSplitOptions.RemoveEmptyEntries);
 
         // If the source is empty, we return an empty communication
         if (splitedSource.Length == 0) {

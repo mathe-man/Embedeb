@@ -11,9 +11,9 @@ public class TimeMessage : Message
 public class BasicTimeMessageHandler {
 
     [MessageHandler("TIME")]
-    public static Message Handle(string content)
+    public static Message Handle(RawMessage me)
     {
-        var time = int.Parse(content);
+        var time = int.Parse(me.Content);
         return new TimeMessage(time);
     }
 }

@@ -10,7 +10,7 @@ public class BreakPointMessage : Message
 
 public class BreakpointMessageHandler {
     [MessageHandler("BKPoint")]
-    public static Message Handle(string content)
+    public static Message Handle(RawMessage me)
     {
         // You can add a breakpoint here for debugging purposes
         return new BreakPointMessage(DateTime.Now);

@@ -21,7 +21,7 @@ internal class MessageHandlerRegister
             if (message.Type.Contains(key))     // If the message type contains the key (so the message type can target multiple handlers)
                 foreach (var handler in _handlers[key])     // For each handler associated with that key
                 {
-                    handler.Invoke(null, new object[] { message.Content }); // We invoke the handler, passing the message as an argument. The first argument is null because we are calling a static method.
+                    handler.Invoke(null, new object[] { message }); // We invoke the handler, passing the message as an argument. The first argument is null because we are calling a static method.
                     returnValue++; // We increment the return value for each handler found for the message type.
                 }
 

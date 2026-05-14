@@ -25,13 +25,14 @@ public class MessageDispatcher
             })
             .Where(x => x.Attr != null)
             .ToDictionary(
-                x => x.Attr.MessageId, // Key: ID defined in the attribute
+                x => x.Attr.MessageId, // Key: IDs defined in the attribute
                 x => x.Method          // Value: the method to call
             );
 
 
-        foreach (var handler in assemblyHandlers)
-            _handlers.AddHandler(handler.Key, handler.Value);
+        foreach (var handler in assemblyHandlers)   // For each handler found in the assembly
+            foreach (var messageId in handler.Key)  // For each message ID defined in the attribute of the handler  
+                _handlers.AddHandler(messageId, handler.Value); // We add the handler for that message ID in the register
     }
 
     public int Dispatch(RawMessage rawMessage)

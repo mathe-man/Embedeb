@@ -13,16 +13,16 @@ internal class MessageHandlerRegister
         _handlers[messageType].Add(handler);
     }
 
-    public bool CallHandler(RawMessage message)
+    public int CallHandlers(RawMessage message)
     {
-        bool returnValue = false;    // We initialize a return value to false. This will be set to true if we find at least one handler for the message type.
+        int returnValue = 0;    // We initialize a return value to 0. This will be incremented for each handler found for the message type.
 
         foreach (var key in _handlers.Keys)     // For each key in the handlers dictionary
             if (message.Type.Contains(key))     // If the message type contains the key (so the message type can target multiple handlers)
                 foreach (var handler in _handlers[key])     // For each handler associated with that key
                 {
-                    handler.Invoke(null, new object[] { message }); // We invoke the handler, passing the message as an argument. The first argument is null because we are calling a static method.
-                    returnValue = true; // We set the return value to true because we found at least one handler for the message type.
+                    handler.Invoke(null, new object[] { message.Content }); // We invoke the handler, passing the message as an argument. The first argument is null because we are calling a static method.
+                    returnValue++; // We increment the return value for each handler found for the message type.
                 }
 
         return returnValue;

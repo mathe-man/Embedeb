@@ -5,7 +5,7 @@ namespace EmbeDebInterpreter.Message;
 
 public class MessageDispatcher
 {
-    private Dictionary<string, MethodInfo> _handlers = new();
+    private MessageHandlerRegister _handlers = new();
 
     public MessageDispatcher(bool registerCurrentAssembly = true)
     {
@@ -25,29 +25,16 @@ public class MessageDispatcher
             })
             .Where(x => x.Attr != null)
             .ToDictionary(
-                x => x.Attr.MessageId, // Key: ID defined in the attribute
+                x => x.Attr.MessageId, // Key: IDs defined in the attribute
                 x => x.Method          // Value: the method to call
             );
 
 
-        _handlers = _handlers.Concat(assemblyHandlers)
-            .GroupBy(d => d.Key)
-            .ToDictionary(
-                g => g.Key,
-                g => g.Last().Value // In case of duplicates, take the last one found
-            );
+        foreach (var handler in assemblyHandlers)   // For each handler found in the assembly
+            foreach (var messageId in handler.Key)  // For each message ID defined in the attribute of the handler  
+                _handlers.AddHandler(messageId, handler.Value); // We add the handler for that message ID in the register
     }
 
-    public Message? Dispatch(RawMessage rawMessage)
-    {
-        if (_handlers.TryGetValue(rawMessage.Type, out var handler))
-        {
-            return (Message?)handler.Invoke(null, [rawMessage.Content]);
-        }
-        else
-        {
-            // TODO Not throwning an error but just ignore when there is no handler, then return a null value
-            throw new Exception($"No handler found for message ID: {rawMessage.Type}");
-        }
-    }
+    public int Dispatch(RawMessage rawMessage)
+        => _handlers.CallHandlers(rawMessage);
 }

@@ -13,7 +13,7 @@ public class SerieValueMessage : Message
         RaiseObjectCreated();
     }
 }
-public class SerieValueHandlers
+public class SerieValueMessageHandler
 {
     [MessageHandler("SerieValue")]
     public static Message Handle(RawMessage me)

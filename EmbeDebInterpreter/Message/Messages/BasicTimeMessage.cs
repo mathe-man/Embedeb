@@ -1,10 +1,10 @@
 ﻿
 namespace EmbeDebInterpreter.Message.MessageHandlers;
 
-public class TimeMessage : Message
+public class BasicTimeMessage : Message
 {
     public int Time { get; }
-    public TimeMessage(int time)
+    public BasicTimeMessage(int time)
     {
         Time = time;
         RaiseObjectCreated();
@@ -17,6 +17,6 @@ public class BasicTimeMessageHandler {
     public static Message Handle(RawMessage me)
     {
         var time = int.Parse(me.Content);
-        return new TimeMessage(time);
+        return new BasicTimeMessage(time);
     }
 }

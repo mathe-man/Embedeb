@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EmbeDebInterpreter.Message.MessageHandlers;
+namespace EmbeDebInterpreter.Message;
 
 // TODO: make this attribute support multiple message IDs for a single handler
 

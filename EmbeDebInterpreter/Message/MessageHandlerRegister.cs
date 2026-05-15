@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace EmbeDebInterpreter.Message.MessageHandlers;
+namespace EmbeDebInterpreter.Message;
 
 internal class MessageHandlerRegister
 {

@@ -9,6 +9,8 @@ public class SerieValueMessage : Message
     {
         Index = index;
         Value = value;
+
+        RaiseObjectCreated();
     }
 }
 public class SerieValueHandlers

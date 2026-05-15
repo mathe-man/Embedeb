@@ -5,7 +5,10 @@ public class TimeMessage : Message
 {
     public int Time { get; }
     public TimeMessage(int time)
-        => Time = time;
+    {
+        Time = time;
+        RaiseObjectCreated();
+    }
 }
 
 public class BasicTimeMessageHandler {

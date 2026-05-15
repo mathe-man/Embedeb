@@ -5,7 +5,10 @@ public class BreakPointMessage : Message
 {
     public DateTime ReceivedTime { get; }
     public BreakPointMessage(DateTime receivedTime)
-        => ReceivedTime = receivedTime;
+    {
+        ReceivedTime = receivedTime;
+        RaiseObjectCreated();
+    }
 }
 
 public class BreakpointMessageHandler {
